@@ -19,6 +19,5 @@ These features may or may not work when used in conjunction with HIP.
 
 ## Future Ideas
 * Dockerize build process
-* Instead of compiling for each GPU individually, it would be cool to dynamically load the required libraries at runtime based on GPU detection.
-* Add Python bindings.
+* Add Python bindings setup for libraries
 
