@@ -176,6 +176,12 @@ macro(enable_clang_tidy target WARNINGS_AS_ERRORS)
         --extra-arg=-Wno-ignored-optimization-argument
         --extra-arg=-Wno-unused-command-line-argument
        )
+
+        # Set warnings as errors
+        if(${WARNINGS_AS_ERRORS})
+            list(APPEND CLANG_TIDY_OPTIONS -warnings-as-errors=*)
+        endif()
+
         # Set standard
         if(NOT
        "${CMAKE_CXX_STANDARD}"
@@ -186,15 +192,22 @@ macro(enable_clang_tidy target WARNINGS_AS_ERRORS)
             else()
                 set(CLANG_TIDY_OPTIONS ${CLANG_TIDY_OPTIONS} -extra-arg=-std=c++${CMAKE_CXX_STANDARD})
             endif()
+            set_property(TARGET ${PROJECT_NAME}_settings PROPERTY CXX_CLANG_TIDY ${CLANG_TIDY_OPTIONS})
         endif()
 
-        # Set warnings as errors
-        if(${WARNINGS_AS_ERRORS})
-            list(APPEND CLANG_TIDY_OPTIONS -warnings-as-errors=*)
+        if(NOT
+       "${CMAKE_C_STANDARD}"
+       STREQUAL
+       "")
+            if("${CLANG_TIDY_OPTIONS_DRIVER_MODE}" STREQUAL "cl")
+                set(CLANG_TIDY_OPTIONS ${CLANG_TIDY_OPTIONS} -extra-arg=/std:c${CMAKE_C_STANDARD})
+            else()
+                set(CLANG_TIDY_OPTIONS ${CLANG_TIDY_OPTIONS} -extra-arg=-std=c${CMAKE_C_STANDARD})
+            endif()
+            set_property(TARGET ${PROJECT_NAME}_settings PROPERTY C_CLANG_TIDY ${CLANG_TIDY_OPTIONS})
         endif()
 
-        message("Also setting clang-tidy globally")
-        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_OPTIONS})
+        message("Setting clang-tidy globally (for project)")
     else()
         message(${WARNING_MESSAGE} "clang-tidy requested but executable not found")
     endif()
