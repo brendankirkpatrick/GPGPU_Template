@@ -4,7 +4,9 @@ The template supports creating static libraries and executables.
 It also includes an example project setup demonstrating how to link to the generated library (HIP or CUDA).
 
 ## Requirements
-To compile/use the library you need to have [HIP installed](https://rocm.docs.amd.com/projects/HIP/en/latest/install/install.html). The installation depends on your version of OS/Linux version. HIP is also capable of cross compiling to CUDA, but requires the CUDA toolkit to also be installed.
+To compile/use the library with HIP you need to have [HIP installed](https://rocm.docs.amd.com/projects/HIP/en/latest/install/install.html). The installation depends on your version of OS/Linux version. HIP is also capable of cross compiling to CUDA, but requires the CUDA toolkit to also be installed.
+
+For compiling with CUDA, simply install the [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads). 
 
 ## Building/Testing
 The project uses CMake as a build system. 
