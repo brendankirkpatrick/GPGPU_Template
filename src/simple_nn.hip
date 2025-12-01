@@ -1,4 +1,3 @@
-#include <hip/driver_types.h>
 #include <iostream>
 #include <span>
 
