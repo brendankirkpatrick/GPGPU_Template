@@ -31,7 +31,7 @@ target_include_directories(UNIT_TEST PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(
     UNIT_TEST
-    INTERFACE ${PROJECT_NAME}_settings
-    PRIVATE Catch2::Catch2WithMain
+    PRIVATE ${PROJECT_NAME}_settings
+    Catch2::Catch2WithMain
     ${PROJECT_NAME}_lib
 )

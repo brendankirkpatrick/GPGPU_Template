@@ -55,7 +55,7 @@ endif()
 list(APPEND CMAKE_PREFIX_PATH "${ROCM_ROOT}")
 
 add_library(${PROJECT_NAME}_lib ${HEADER_FILES} ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME}_lib INTERFACE ${PROJECT_NAME}_settings)
+target_link_libraries(${PROJECT_NAME}_lib PRIVATE ${PROJECT_NAME}_settings)
 set_target_properties(${PROJECT_NAME}_lib
                       PROPERTIES
                       LINKER_LANGUAGE CXX
